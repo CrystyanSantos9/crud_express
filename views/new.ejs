@@ -1,0 +1,24 @@
+<%- include('header')%>
+        <h1 style="width:100%;margin-top:5%;"><%= title %></h1>
+        <p>Preencha os dados abaixo para salvar o cliente.</p>
+        <form class="mb-3" action="<%= action %>" method="POST">
+            <p>
+                <label class="form-label" >Nome: <input class="form-control" placeholder="First name" type="text" name="nome" value="<%= doc.nome %>" required/></label>
+            </p>
+            <p>
+                <label class="form-label">Idade: <input class="form-control" type="number" name="idade" value="<%= doc.idade %>" placeholder="Idade" required/></label>
+            </p>
+            <p>
+                <label class="form-label">UF: <select class="form-select" name="uf">
+                        <% const s = "selected" %>
+                        <option <% if(doc.uf === "RS") { %><%= s %><% } %>>RS</option>
+                        <option <% if(doc.uf === "SC") { %><%= s %><% } %>>SC</option>
+                        <option <% if(doc.uf === "PR") { %><%= s %><% } %>>PR</option>
+                        <!-- coloque os estados que quiser -->
+                    </select></label>
+            </p>
+            <p>
+                <a class="btn btn-warning" href="/">Cancelar</a> | <input class="btn btn-primary" type="submit" value="Salvar" />
+            </p>
+        </form>        
+<%- include('footer')%>

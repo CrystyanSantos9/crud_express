@@ -1,0 +1,48 @@
+<%- include('header')%>
+      <h1 style="width:100%;margin-top:5%;">Listagem de Clientes</h1>
+      <p>Clientes já cadastrados no sistema.</p>
+      <table class="table table-striped" style="width:100%;">
+        <thead>
+          <tr style="background-color: #CCC">
+            <td style="width:30%;height:20%;">Nome</td>
+            <td style="width:15%">Idade</td>
+            <td  style="width:15%">UF</td>
+            <td style="width:15%;text-align: center;">Ações</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(!docs || docs.length == 0) 
+          { %>
+            <tr>
+              <td colspan="4">Nenhum cliente cadastrado.</td>
+            </tr>
+          <% } 
+              else { 
+                docs.forEach(function(customer)
+                { %>
+                  <tr>
+                    <td><%= customer.nome %></td>
+                    <td ><%= customer.idade %></td>
+                    <td ><%= customer.uf %></td>
+                    <td style="text-align: center;">
+                      <a class="btn btn-warning"  style="display:inline-block;margin:10px;" href="/edit/<%=customer._id %>">Editar</a>
+                      <a class="btn btn-danger"  style="display:inline-block;"onclick="return confirm('Tem certeza que deseja remover esse cliente?');" href="/delete/<%= customer._id %>">Excluir</a>
+                    </td>
+                  </tr>
+                <%}) 
+            }%>
+          </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <a class="btn btn-primary" href="/new" >Cadastrar Novo</a>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="/javascripts/checkUrlParams.js"></script>
+<%- include('footer')%>
+
+
+ 
